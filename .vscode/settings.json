@@ -5,4 +5,10 @@
     "files.exclude": {
         "**/__pycache__": true,
     },
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.formatOnType": false,
+        "editor.wordBasedSuggestions": "matchingDocuments",
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff",
 }
