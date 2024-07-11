@@ -1,14 +1,38 @@
 {
-    "editor.rulers": [80],
-    "editor.renderWhitespace": "all",
-    "explorer.sortOrder": "type",
-    "files.exclude": {
-        "**/__pycache__": true,
-    },
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false,
-        "editor.formatOnType": false,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
         "editor.wordBasedSuggestions": "matchingDocuments",
     },
-    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "all",
+    "editor.wordWrap": "on",
+    "explorer.sortOrder": "type",
+    "explorer.compactFolders": true,
+    "workbench.iconTheme": "vscode-icons",
+    "terminal.integrated.env.windows": {},
+    "black-formatter.args": [
+        "--line-length",
+        "80"
+    ],
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": false,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+    },
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
