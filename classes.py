@@ -9,6 +9,8 @@ Provide classes to set game.
 # single characters) that can be looked for in the user input to identify cards.
 # When trying to parse a card input, the program will look for every entry of
 # key_symbols when searching for card properties.
+
+
 PROP_REPR = {
     "amount": {
         0: {
@@ -68,6 +70,7 @@ PROP_REPR = {
     },
 }
 
+
 class SetBoard:
     """
     Represent a board of set cards.
@@ -80,11 +83,11 @@ class SetBoard:
     def add_cards_by_user(self, amount: int = 1):
         for i in range(amount):
             pass
-    
-    def check_for_duplicates(self):
+
+    def check_for_duplicates(self) -> None:
         pass
 
-    def find_set(self):
+    def find_set(self) -> None:
         pass
 
 
@@ -101,21 +104,41 @@ class SetCard:
         # against the given string.
         # Stop if a match is found and set self.<name-of-that-property>
         # to the value in whose dict the matching key symbol was found.
-        for property in PROP_REPR.keys():
-            for value, info in PROP_REPR[property].items():
-                if any(key_symbol in description_string for key_symbol in info["key_symbols"]):
-                    self.__setattr__(property, value)
-        
+        for card_property in PROP_REPR.keys():
+            for value, info in PROP_REPR[card_property].items():
+                if any(
+                    key_symbol in description_string
+                    for key_symbol in info["key_symbols"]
+                ):
+                    self.__setattr__(card_property, value)
+
         # Check if a valid card description was given, meaning all four
         # properties could be assigned.
-        
-    
-    def __repr__(self):
+
+    def __repr__(self) -> str:
 
         # Join the string representations of all four property values together
         # separated by a whitespace, order is given by the order in which
         # they are listed in PROP_REPR.
-        return " ".join([
-            PROP_REPR[property][self.__getattribute__(property)]["string"]
-            for property in PROP_REPR.keys()
-        ])
+        return " ".join(
+            [
+                PROP_REPR[card_property][self.__getattribute__(card_property)][
+                    "string"
+                ]
+                for card_property in PROP_REPR.keys()
+            ]
+        )
+
+    def __eq__(self, compared_object: object) -> bool:
+        """
+        Two set cards are identical if all four of their properties are the same
+
+        Args:
+            compared_object (object): SetCard object to compare to self.
+        """
+
+        return all(
+            self.__getattr__(card_property)
+            == compared_object.__getattr__(card_property)
+            for card_property in PROP_REPR.keys()
+        )
